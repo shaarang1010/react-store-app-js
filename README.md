@@ -1,4 +1,4 @@
-# React + Typescript Ecommerce App
+# React Javascript Ecommerce App
 
 **Bootstraped with Create-React-App**
 
