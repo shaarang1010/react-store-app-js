@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# React + Typescript Ecommerce App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Bootstraped with Create-React-App**
 
-## Available Scripts
+### Dependencies
 
-In the project directory, you can run:
+- React and React Dom v18.x
+- react-router-dom@6
+- react-bootstrap
+- react-testing-library
 
-### `npm start`
+### API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+We are using a Fake store api to retrieve list of products, add products to cart, user details, etc.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can access the api below. Also, available is postman collection.
 
-### `npm test`
+[Fake-Store-API](https://fakestoreapi.com/docs)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/1486577-f171c6e2-10ab-4349-bc10-9db4449da719?action=collection%2Ffork&collection-url=entityId%3D1486577-f171c6e2-10ab-4349-bc10-9db4449da719%26entityType%3Dcollection%26workspaceId%3D18e6f11c-8e45-4bea-b35a-8f6ad5fa2c29)
 
-### `npm run build`
+### Get Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensure you have Nodejs installed.[Nodejs](https://nodejs.org/en/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Clone the repo and install dependencies using the following cmd - `npm install` or using yarn `yarn install`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### User stories
 
-### `npm run eject`
+#### STR-US1. As a user, I would like to view all products in the online store
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Acceptance criteria:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. As a user I should be able login using my credentials and view the dashboard.
+2. As a user I should be able to view all the products on the dashboard.
+3. Each product should have a title, image and price.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### STR-US2. As a user, I would like to view only 8 products on a page
 
-## Learn More
+Acceptance criteria:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. As a user I should be able login using my credentials and view the dashboard.
+2. As a user I should be able to view only 8 products per page on the dashboard.
+3. The product results should be paginated and there should be a next and previous button at the bottom of the product list to
+   navigate to next page and show next 8 products.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+#### STR-US3. As a user, when I click on a product on the dashboard, it should me the details of the product
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Acceptance criteria:
 
-### Analyzing the Bundle Size
+1. A user clicks on a product image on the dashboard.
+2. The user is navigated to the products page where the product image, title, descritpion, category and price are shown.
+3. A button `Add to cart` is shown below the product details.
+4. When the user clicks on the `Add to cart` button, the product is added to the user's cart. _(This functionality can be either mocked or you can implement this via React Context API)_
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Option 1: Mock the functionality [Complexity: Easy]**
 
-### Making a Progressive Web App
+- Make an api call to fake-store-api to add new product to the cart as shown [here](https://fakestoreapi.com/docs#c-new).
+- Store the response and either show it as a modal or an alert (you can use React-Bootstrap [Modal](https://react-bootstrap.github.io/components/modal/) or [Alert](https://react-bootstrap.github.io/components/alerts/) components).
+- On clicking back, the user should be navigated back to dashboard.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Option 2: Use Context API [Complexity: Hard]**
 
-### Advanced Configuration
+- Create a Context named - CartContext.
+- CartContext should store array of Products.
+- When a user adds product to cart, the product including its details should be added to the context.
+- These details should persist when the user is navigated back to the dashboard
+- [BONUS]: In the Navbar, you can display the total number of products in the cart.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+#### STR-US4. As a user, I would like to sort products on dashboard in either accending or descending order\*\*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Acceptance criteria:
 
-### `npm run build` fails to minify
+1. Add a dropdown, with options to Sort - ASC, Sort-DESC.
+2. The dropdown should be added below the navbar and floated to right. You can use `flex justify-content-end` class or `float:right`.
+3. When the user chooses `SORT-ASC` the products should be sorted by their price in ascending order. When user chooses `SORT-DESC` the products on dashboard should be sorted according to their prices in descending order.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
