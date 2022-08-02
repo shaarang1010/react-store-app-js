@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { CardComponent } from "../../components/cards/Card";
 import { ModalComponent } from "../../components/modal/Modal";
 import { TableComponent } from "../../components/table/Table";
+import { ProductContext } from "../../context/product/ProductContext";
 import { httpRequest } from "../../utils/httpRequest";
 
 const getAllProducts = async () => {
@@ -19,6 +20,7 @@ const Dashboard = () => {
     category: "",
     rating: { rate: 0, count: 0 },
   });
+  const { setUserProducts } = useContext(ProductContext);
 
   const onCardImageClickHandler = (product) => {
     setProductSelected(product);
@@ -71,7 +73,7 @@ const Dashboard = () => {
               cardImg={product.image}
               cardBadgeText={product.price}
               cardTitle={product.title}
-              onClickHandler={() => {}}
+              onClickHandler={() => setUserProducts(product)}
               onImageClickHandler={() => {
                 onCardImageClickHandler(product);
               }}
